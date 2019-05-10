@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <div class="row top-banner text-center bg-alt-1">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+           <!--  <img src="images/crowd-pitch-logo-transparent.png" alt="Crowd-Pith-Logo" height="100" class="brand-logo mt-2 mb-2"> -->
+           <img src="{{ cosmic.metadata.top_logo.url }}" alt="Crowd-Pith-Logo" height="100" class="brand-logo mt-2 mb-2">
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+
+<div class="container-fluid content-main">
+    <div class="row text-center pt-4 content-section">
+        <div class="col-lg">
+            <h2 class="display-4 title-1">{{ cosmic.metadata.main_header }}</h2>
+            {{#each cosmic.metadata.sub_headers }}
+                <h1 class="title-2{{#if @first}} pt-4{{/if}}">{{ header }}</h1>
+            {{/each}}
+            {{#each cosmic.metadata.top_description.[0] }}
+                <div class="p-1{{#if @first}} pt-4{{/if}}{{#if @last}} pb-4{{/if}}">{{this}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="row pt-3 bg-black shape-polygon pt-5 product-features-section">
+        <div class="col-sm-6 text-center">
+            <img src="{{ cosmic.metadata.product_main_image.url }}" alt="{{ cosmic.metadata.product_main_image_title }}" width="400px" class="mt-4 mb-4">
+        </div>
+        <div class="col-sm-6">
+            <div class="features-header pt-4 pb-4">
+                <h3>{{ cosmic.metadata.features_header }}</h3>
+            </div>
+            {{#each cosmic.metadata.features_list}}
+                <div class="features-item">
+                    <h3 class="pb-1"><i class="fas fa-arrow-alt-circle-right"></i> {{ header }} <span class="text-danger">(${{ value }} Value)</span></h3>
+                    <p>{{ description }}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="row content-section count-down-section">
+        <div class="col-sm-12 pt-4 text-center">
+            <h1 class="title-3 display-3">{{ cosmic.metadata.deal_summary.header_1 }}</h1>
+            <h1 class="title-3 display-3">{{ cosmic.metadata.deal_summary.header_2 }} <span class="text-danger title-price">{{ cosmic.metadata.deal_summary.header_3 }} ${{ cosmic.metadata.deal_summary.product_value }}</span></h1>
+            <div class="pt-4 lead">{{ cosmic.metadata.deal_summary.deal_description }}</div>
+        </div>
+    </div>
+    <div class="row text-center pt-2 content-section" id="clockdiv">
+        <div class="col"></div>
+        <div class="col-sm-1 display-4"><span class="badge badge-pill badge-danger hours">22</span></div>
+        <div class="col-sm-1 display-4"><span class="badge badge-pill badge-danger minutes">45</span></div>
+        <div class="col-sm-1 display-4"><span class="badge badge-pill badge-danger seconds">66</span></div>
+        <div class="col"></div>
+    </div>
+    <div class="row text-center small text-muted content-section">
+        <div class="col"></div>
+        <div class="col-sm-1"><p class="pl-3">HOUR</p></div>
+        <div class="col-sm-1"><p class="pl-3">MINUTE</p></div>
+        <div class="col-sm-1"><p class="pl-3">SECOND</p></div>
+        <div class="col"></div>
+    </div>
+    <div class="row pt-2 alt-content-section">
+        <div class="col"></div>
+        <div class="col-sm-7 text-center pt-3">
+            {{#each cosmic.metadata.payment_section.guarantee_description }}
+                <div class="lead">{{ paragraph }}</div>
+            {{/each}}
+        </div>
+        <div class="col-sm-1">
+            <img src="{{ cosmic.metadata.payment_section.money_back_logo.url }}" alt="{{ cosmic.metadata.payment_section.money_back_logo_title }}" width="100">
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row alt-content-section">
+        <div class="col">
+        </div>
+        <div class="col-sm-6 checkout-form">
+            <form id="payment-form" method="POST" action="/pay">
+                <div class="mb-2">CONTACT INFORMATION</div>
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First Name" name="firstName" id="first-name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lastName" id="last-name">
+                    </div>
+                </div>
+                <div class="form-row pt-3">
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
+                    </div>
+                    <div class="col">
+                        <input type="tel" class="form-control" placeholder="Phone Number" name="phone" id="phone">
+                    </div>
+                </div>
+                <div class="mb-2 mt-3">PAYMENT INFORMATION</div>
+                <div class="form-row mb-2">
+                    <div class="col">
+                        <img class="credit-card-icon" src="images/cc-visa.png" alt="Visa Card">
+                        <img class="credit-card-icon" src="images/cc-master.png" alt="Master Card">
+                        <img class="credit-card-icon" src="images/cc-discover.png" alt="Discover Card">
+                        <img class="credit-card-icon" src="images/cc-amex.png" alt="American Express">
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col">
+                        <div id="card-element" class="form-control"></div>
+                        <!-- Used to display Element errors. -->
+                        <div id="card-errors" role="alert" class="text-danger small"></div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Zip Code" name="zipCode" id="zip-code">
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+                <div class="small mt-3 mb-2">
+                    ORDER SUMMARY
+                </div>
+                <div class="form-row order-summary">
+                    <div class="col">
+                        <input type="hidden" name="orderSummary" id="order-summary" value="Google Local Business Cash Machine">
+                        <div>Google Local Business Cash Machine</div>
+                    </div>
+                    <div class="col text-right pr-3">
+                        <input type="hidden" name="amount" id="amount" value="{{ cosmic.metadata.deal_summary.product_value }}">
+                        <div>${{ cosmic.metadata.deal_summary.product_value }}</div>
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-pay">Pay Now</button>
+                        <div id="payment-result" class="text-danger"></div>
+                    </div>
+                </div>
+                <div class="form-row mt-3 checkout-footer">
+                    <div class="col">
+                        <div><i class="fas fa-lock"></i> SECURE CHECKOUT</div>
+                    </div>
+                    <div class="col">
+                        <div><i class="fas fa-certificate"></i> SATISFACTION GUARANTEE</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row text-center pt-3 pb-3 alt-content-section">
+        <div class="col"></div>
+        <div class="col text-muted">
+            {{#each cosmic.metadata.page_footer }}
+                <div class="small{{#if @last}} mt-2{{/if}}">{{ paragraph }}</div>
+            {{/each}}
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<script>
+    // inject the dealCoundown from the back-end into JS variable. To be used later by main.js
+    const dealCountDown = {{ cosmic.metadata.deal_countdown }};
+</script>
+
+<!-- <div class="row top-banner text-center">
+    <h3>Crowd-Pitch</h3>
+</div>
+<div class="row jumbotron">
+    <h2>Welcome to Crowd-Pitch</h2>
+    <p class="lead">The ultimate tool to online selling and marketing</p>
+</div> -->

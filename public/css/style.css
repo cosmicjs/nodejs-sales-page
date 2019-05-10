@@ -1,0 +1,190 @@
+.top-banner {
+    /*  height: 120px;*/
+}
+
+.brand-logo {
+    border: solid #ea4130 1px;
+}
+
+.content-main {
+    background-image: url(../images/buildings-canada.jpg);
+    background-repeat: repeat repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.content-section {
+    background-color: lightblue;
+    opacity: 0.9;
+}
+
+.alt-content-section {
+    background-color: rgba(255, 255, 224, 0.9);
+}
+
+.product-features-section {
+    z-index: 2;
+    position: relative;
+}
+
+.count-down-section {
+    margin-top: -80px;
+    padding-top: 90px;
+}
+
+.title-1 {
+    font-family: "Fjalla One", Helvetica, sans-serif;
+    color: #f36105;
+}
+
+.title-2 {
+    font-family: Roboto, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.title-3 {
+    font-family: Oswald, Helvetica, sans-serif;
+}
+
+.p-1 {
+    font-family: Montserrat, Helvetica, sans-serif;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.bg-alt-1 {
+    /*background-color: steelblue;*/
+    background-color: #102938;
+}
+
+.bg-alt-2 {
+    background-color: #82b3c9;
+}
+
+.bg-alt-3 {
+    background-color: #e6ffff;
+}
+
+.bg-black {
+    background-color: black;
+    color: white;
+}
+
+.shape-polygon {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
+    clip-path: polygon(0 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
+    padding-bottom: 100px;
+}
+
+.features-header {
+    font-family: 'Lato', sans-serif;
+}
+
+.features-item {
+    font-family: 'Lato', sans-serif;
+    padding: 10px 90px 5px 0;
+}
+
+.features-item p {
+    font-size: 18px;
+}
+
+.features-item i {
+    margin-right: 10px;
+}
+
+.title-price {
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#card-element {
+    border: 1px solid #ced4da;
+}
+
+.order-summary {
+    background-color: #ECF1F5;
+    line-height: 3rem;
+    border-radius: 5px;
+    color: #7b8893;
+    font-weight: 500;
+}
+
+.btn-pay {
+    width: 100%;
+    background-color: #fc7546;
+    border-color: #fc7546;
+    font-weight: 500;
+    color: white;
+}
+
+.btn-pay:hover {
+    background-color: #f14104;
+    border-color: #f14104;
+    color: white;
+    font-weight: 600;
+}
+
+.checkout-footer {
+    color: #7b8893;
+}
+
+.checkout-footer .fas {
+    font-size: 50px;
+    vertical-align: sub;
+    margin-right: 10px;
+    margin-left: 5px;
+    color: darkgray;
+}
+
+.checkout-form {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    box-shadow: 5px 5px lightgrey;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    background-color: lightblue;
+}
+
+.credit-card-icon {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.badge.hours, .badge.minutes, .badge.seconds {
+    min-width: 105px;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "crowd-pitch",
+  "version": "1.0.0",
+  "description": "Marketing sales piching page with shopping cart and payment features.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "author": "Mohamed Termoul",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cosmicjs": "^3.2.15",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "stripe": "^6.31.1"
+  }
+}
