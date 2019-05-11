@@ -1,6 +1,6 @@
 * Single page sales funnel using Node, Cosmic JS CMS, and Stripe.
 
-<img src="./public/images/smartmockups_large.gpg" alt="Single page sales funnel">
+<img src="./public/images/smartmockups_large.jpg" alt="Single page sales funnel">
 
 ## TL;DR
 
