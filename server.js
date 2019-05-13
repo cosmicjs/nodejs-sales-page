@@ -29,7 +29,6 @@ app.get('/', async function(req, res) {
 });
 
 app.post('/pay', function(req, res) {
-    // console.log('---- paying from: ', req.body);
     stripe.charges.create({
         amount: Number(req.body.amount) * 100, // amount in cents
         currency: 'usd',
