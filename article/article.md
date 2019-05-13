@@ -36,7 +36,7 @@ In order for you to clone this application and have your own custom copy, you ne
 ```
 git clone https://github.com/cosmicjs/crowd-pitch
 cd crowd-pitch
-nmp install
+npm install
 ```
 
 * edit and change Cosmic JS and Stripe API keys located in `/crowd-pitch/.env.local` file
@@ -56,7 +56,7 @@ npm run server
 
 ```
 
-* opne the application from your browser on <a href="http://localhost:3000">http://localhost:3000</a>
+* open the application from your browser on <a href="http://localhost:3000">http://localhost:3000</a>
 
 ## How to customize the application content
 In order for you to change the text, images, and application content you need to follow these steps.
@@ -68,12 +68,12 @@ In order for you to change the text, images, and application content you need to
 * Change the page images by adding your own images. Make sure to keep the same image title and slug.
 * Hit save and publish
 
-This part works like any CMS system, where you make changes to the back-end and the site can change immidiatly.
+This part works like any CMS system, where you make changes to the back-end and the site can change immediately.
 
 
 ## How to add new features to this application
-This part and below would be an explanation on how the application fron-end was developed and how you can digg deaper to customize more options like the layout, css, colors, and which fields to collect from the user.
-This application was build mianly using Node JS, and Stripe API. So let's take a look at the server.js file
+This part and below would be an explanation on how the application front-end was developed and how you can dig deeper to customize more options like the layout, css, colors, and which fields to collect from the user.
+This application was build mainly using Node JS, and Stripe API. So let's take a look at the server.js file
 
 ```
 const express = require('express');
@@ -130,19 +130,19 @@ app.listen(PORT, () => {
 
 As you can see from the code above we are using the following Javascript components:
 
-* <a href="https://www.npmjs.com/package/express">Express:</a> a light wreight web server for node
+* <a href="https://www.npmjs.com/package/express">Express:</a> a light weight web server for node
 * <a href="https://www.npmjs.com/package/express-handlebars">Express-Handlebars:</a> This html templating library for <a href="http://handlebarsjs.com/">handlebars.js</a> syntax
 * <a href="https://www.npmjs.com/package/cosmicjs">CosmicJs:</a> to handle interaction with Cosmic JS API from the server
 * <a href="https://www.npmjs.com/package/stripe">Stripe:</a> to handle interaction with <a href="https://stripe.com/docs/payments">Stripe payment API</a>
 
-Inside the server.js there is basicly two function to handle server routing:
+Inside the server.js there is basically two function to handle server routing:
 
 * app.get('/') to handle the get request when the user visits the application. Inside this function we simply call Cosmic JS to fetch all data from our bucket and inject it as a server response local variable. The second part is just rendering the home view which is just an HTML/Handlebars template page.
 
 * app.post('/pay') to handle the payment form posting. Inside this function there is simply one call to Stripe charges API to add one charge to the specified credit card.
 
 ## How to customize the layout and CSS for the application?
-As mentioned before, in this app we are using handlebars.js for the page templating. From the server get function we render `views/home.handlebars` page wich is simply an html page with some handlebars tags to replace server veriables with values from Cosmic JS CMS. Let's take a look:
+As mentioned before, in this app we are using handlebars.js for the page templating. From the server get function we render `views/home.handlebars` page which is simply an html page with some handlebars tags to replace server variables with values from Cosmic JS CMS. Let's take a look:
 
 ```
 <div class="container-fluid">
@@ -170,7 +170,7 @@ As mentioned before, in this app we are using handlebars.js for the page templat
 ...
 ```
 
-As you can see, we reference server variables within a double curly barakets. For instance `{{ cosmic.metadata.top_logo.url }}` means get the value of variable from Cosmic JS, which the logo image url and put it in the home view page. There are also similar syntax to handle if and loop using handlebars syntax. For a full syntax help, please refer to <a href="http://handlebarsjs.com/">Handlebars User Documentation</a>.
+As you can see, we reference server variables within a double curly brackets. For instance `{{ cosmic.metadata.top_logo.url }}` means get the value of variable from Cosmic JS, which the logo image url and put it in the home view page. There are also similar syntax to handle if and loop using handlebars syntax. For a full syntax help, please refer to <a href="http://handlebarsjs.com/">Handlebars User Documentation</a>.
 
 You can also change some of the styling of the page from within home view page because we are simply using <a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/">Bootstrap framework</a>. For some other styling properties you can change it directly from `/public/css/styles.css`
 
@@ -219,7 +219,7 @@ This is basically the main html template for every page in our application. It's
 * JQuery
 * Stripe
 * Bootstrap
-* Fontawesome
+* Font-awesome
 * Axios.js to handle Ajax calls
 
 ## Handling credit card payment with Stripe and Axios
@@ -242,9 +242,9 @@ var card = elements.create('card', {
 card.mount('#card-element');
 ```
 
-* Validate the credit card info by calling `stripe.createToken` when the user hit the submit pyment button. This function will simply send the info to Strip API and get a valid token if success. Otherwise it will return an invalid token.
+* Validate the credit card info by calling `stripe.createToken` when the user hit the submit payment button. This function will simply send the info to Strip API and get a valid token if success. Otherwise it will return an invalid token.
 
-* Post the payment form form data to the server post method. This method will take data submitted from the client form and submit them again as a stript charge by calling `stripe.charges.create`. Take a look:
+* Post the payment form form data to the server post method. This method will take data submitted from the client form and submit them again as a stripe charge by calling `stripe.charges.create`. Take a look:
 
 ```
 ...
@@ -282,16 +282,16 @@ This file contains one function right now to handle count down counter. However 
 const dealCountDown = {{ cosmic.metadata.deal_countdown }};
 
 ```
-and then we calls the `initializeClock` function wich will run the count down until this variable reaches zero.
+and then we calls the `initializeClock` function which will run the count down until this variable reaches zero.
 
 Take a look at the main.js file for the full implementation details.
 
 <img src="../public/images/crowd-pitch-preview.gif" alt="Crowd-Pitch main view" style="display: block; margin-left: auto; margin-right: auto;">
 
 ## Conclusion
-In this application, I tried to show you how you can build a page that displays product info, and handle credit card payment by leveraging the power of Cosmic JS CMS capabilites and few other libraries that handle the payment function. Obviously you can add a function that will send an email to the user after the payment is submitted. Or add a function to send a user to another secure page to all him to download the digital product. Cosmic JS community apps has a lot of examples on how to handle integration with email functions, download functions, and third party platforms.
+In this application, I tried to show you how you can build a page that displays product info, and handle credit card payment by leveraging the power of Cosmic JS CMS capabilities and few other libraries that handle the payment function. Obviously you can add a function that will send an email to the user after the payment is submitted. Or add a function to send a user to another secure page to all him to download the digital product. Cosmic JS community apps has a lot of examples on how to handle integration with email functions, download functions, and third party platforms.
 
-As always, I really hope that you enjoyed this little app, and please do not hesitate to send me your thoughs or comments about what could I have done better.
+As always, I really hope that you enjoyed this little app, and please do not hesitate to send me your thoughts or comments about what could I have done better.
 
 
 
