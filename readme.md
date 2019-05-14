@@ -15,7 +15,7 @@ Change Cosmic JS API key from .env.local
 
 ```
 git clone https://github.com/cosmicjs/nodejs-sales-page
-cd crowd-pitch
+cd nodejs-sales-page
 yarn
 ```
 You can also start connected to your Bucket using an environment variable
