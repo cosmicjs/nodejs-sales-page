@@ -5,7 +5,7 @@ Single page sales funnel using Node, Cosmic JS CMS, and Stripe.
 
 ## TL;DR
 
-* <a href="https://crowd-pitch.cosmicapp1.co/" target="_blank">Demo</a>
+* <a href="https://cosmicjs.com/apps/single-page-sales-funnel" target="_blank">Demo</a>
 * <a href="https://www.cosmicjs.com" target="_blank">Cosmic JS</a>
 * <a href="https://www.stripe.com/" target="_blank">Stripe</a>
 
