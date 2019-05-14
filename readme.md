@@ -14,7 +14,7 @@ Single page sales funnel using Node, Cosmic JS CMS, and Stripe.
 Change Cosmic JS API key from .env.local
 
 ```
-git clone https://github.com/cosmicjs/crowd-pitch
+git clone https://github.com/cosmicjs/nodejs-sales-page
 cd crowd-pitch
 yarn
 ```
