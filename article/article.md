@@ -281,7 +281,7 @@ Take a look at the main.js file for the full implementation details.
 
 ## Check user engagement with A/B testing
 As most marketers have come to realize, the cost of acquiring any quality traffic can be huge. A/B testing lets you make the most out of your existing traffic and helps you increase conversion without having to spend on acquiring new traffic. A/B testing can give you high ROI as sometimes, even the most minor changes can result in a significant increase in conversions.
-For the purpose of this app, I will add to `style.css` files and once the user visits the site I will be randomly selecting one stylesheet. The stylesheet selection will affect how the color theme will look like. So basically the user can see either version A of the site or version B.
+For the purpose of this app, I will add two `style.css` files and once the user visits the site I will be randomly selecting one stylesheet. The stylesheet selection will affect how the color theme will look like. So basically the user can see either version A of the site or version B.
 
 ```
 # server.js
@@ -303,7 +303,6 @@ Then we load either style A or B on the `main.handlebars` file like this:
     <link rel="stylesheet" href="css/style.css">
     {{/if}}
 ...
-
 ```
 
 We also have a javascript variable that will be used during the payment process to capture which page the user is coming from. This info will be stored along Stripe charge information.
@@ -322,7 +321,6 @@ stripe.charges.create({
     source: req.body.stripeToken,
     statement_descriptor: 'CROWD-PITHC GOOG CASHM'
 })
-
 ```
 
 ## Conclusion
