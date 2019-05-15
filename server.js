@@ -21,10 +21,12 @@ const bucket = api.bucket({
 });
 
 app.get('/', async function(req, res) {
+    const pageVeriant = Math.floor(Math.random() * 2);
     const data = (await bucket.getObjects({type: 'pages'})).objects;
     res.locals.cosmic = data.find((item) => {
         return item.slug === 'google-cash';
     });
+    res.locals.pageB = (pageVeriant === 1 ? true : false);
     res.render('home');
 });
 
@@ -32,7 +34,7 @@ app.post('/pay', function(req, res) {
     stripe.charges.create({
         amount: Number(req.body.amount) * 100, // amount in cents
         currency: 'usd',
-        description: `${req.body.firstName} ${req.body.lastName} (${req.body.email}) - ${req.body.orderSummary}`,
+        description: `${req.body.firstName} ${req.body.lastName} (${req.body.email}) - ${req.body.orderSummary} - Source: ${req.body.pageSource}`,
         source: req.body.stripeToken,
         statement_descriptor: 'CROWD-PITHC GOOG CASHM'
     })

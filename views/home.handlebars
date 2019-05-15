@@ -20,7 +20,7 @@
             {{/each}}
         </div>
     </div>
-    <div class="row pt-3 bg-black shape-polygon pt-5 product-features-section">
+    <div class="row pt-3 shape-polygon pt-5 product-features-section">
         <div class="col-sm-6 text-center">
             <img src="{{ cosmic.metadata.product_main_image.url }}" alt="{{ cosmic.metadata.product_main_image_title }}" width="400px" class="mt-4 mb-4">
         </div>
@@ -167,4 +167,5 @@
 <script>
     // inject the dealCoundown from the back-end into JS variable. To be used later by main.js
     const dealCountDown = {{ cosmic.metadata.deal_countdown }};
+    const pageSource = {{#if pageB}} 'pageB' {{else}} 'pageA' {{/if}};
 </script>

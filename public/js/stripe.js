@@ -63,7 +63,8 @@ function stripeTokenHandler(token) {
     stripeToken: token.id,
     zipCode: document.getElementById('zip-code').value,
     orderSummary: document.getElementById('order-summary').value,
-    amount: document.getElementById('amount').value
+    amount: document.getElementById('amount').value,
+    pageSource: pageSource
   };
   axios.post('/pay', data)
     .then(response => {
