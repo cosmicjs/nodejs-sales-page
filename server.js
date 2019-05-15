@@ -21,6 +21,7 @@ const bucket = api.bucket({
 });
 
 app.get('/', async function(req, res) {
+    res.locals.stripeKey = stripeKey;
     const pageVeriant = Math.floor(Math.random() * 2);
     const data = (await bucket.getObjects({type: 'pages'})).objects;
     res.locals.cosmic = data.find((item) => {

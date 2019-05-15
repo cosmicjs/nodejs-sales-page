@@ -1,23 +1,17 @@
-# How to build a one page sales funnel for free using Node JS, Cosmic JS and Stripe
+# How to Build a Single-Page Sales Funnel App using Node.js, Cosmic JS and Stripe
 
 <img src="../public/images/smartmockups_main.jpg" style="display: block; margin-left: auto; margin-right: auto;"/>
 
-## TL;DR
+What is a sales funnel? And why is it important? A sales funnel is a path that your website's visitors take before purchasing a product. If you don’t understand your sales funnel, you can’t optimize it. Building a great sales funnel can influence how visitors move through the funnel and whether they eventually convert. In this little demo I will be showing you how to build a simple, one-page sales funnel using Node JS, Cosmic JS, and Stripe for handling credit card payments.
 
+## TL;DR
 * <a href="https://crowd-pitch.cosmicapp1.co/" target="_blank">Demo</a>
 * <a href="https://github.com/mtermoul/crowd-pitch" target="_blank">Source code</a>
 * <a href="https://stripe.com/docs/stripe-js/elements/quickstart/" target="_blank">Stripe</a>
 * <a href="https://cosmicjs.com/" target="_blank">Cosmic JS</a>
 
-## Intro
-
-What is a sales funnel? and why it's important? A sales funnel is the path, that your website visitor takes before purchasing an product. If you don’t understand your sales funnel, you can’t optimize it. Building a great sales funnel can influence how visitors move through the funnel and whether they eventually convert.
-In this little demo I will be showing you you how to build a simple one page sales funnel using Node JS, Cosmic JS, and Stripe for handling your credit card payment.
-
 ## Why did I pick Cosmic JS
-
-If you need to build a sales page quickly and freely, you can simply sign up for free Cosmic JS account, copy my app, customize it and done. You'll have you sale funnel page ready in minutes.
-If you need to add section, features then you can simply download the source code and change any the markup or the Javascript behind this application.
+If you need to build a sales page quickly and freely, you can simply sign up for a free Cosmic JS account, copy my app, customize it and you're done. You'll have you sale funnel page ready in minutes. If you need to add a section or features then you can simply download the source-code and change any of the markup or the JavaScript behind this application.
 
 ## How to clone your own version of this app:
 In order for you to clone this application and have your own custom copy, you need to following these steps:
@@ -27,7 +21,7 @@ In order for you to clone this application and have your own custom copy, you ne
 * Go to the <a href="https://cosmicjs.com/buckets">buckets</a> page
 * Click on `Add New Bucket` button on the top right of the page
 * Select `Choose an app below option` and scroll to the applications list
-* Try to find  the `Sales Funnel` application
+* Try to find the `Sales Funnel` application
 * Once you open the application click on the `Install Free` button
 * You can keep the same title and hit the `Install App` button to confirm
 * Then you will be taken to the application bucket
@@ -59,7 +53,7 @@ npm run server
 * open the application from your browser on <a href="http://localhost:3000">http://localhost:3000</a>
 
 ## How to customize the application content
-In order for you to change the text, images, and application content you need to follow these steps.
+In order for you to change the text, images, and application content you need to follow these steps:
 
 * Login to <a href="https://cosmicjs.com/buckets">Cosmic JS dashboard</a>
 * Go to buckets --> crowd-pitch
@@ -67,13 +61,11 @@ In order for you to change the text, images, and application content you need to
 * Change the pages section by editing the text for each part of the web page like the page title, header....
 * Change the page images by adding your own images. Make sure to keep the same image title and slug.
 * Hit save and publish
-
-This part works like any CMS system, where you make changes to the back-end and the site can change immediately.
-
+* This part works like any CMS system, where you make changes to the back-end and the site can change immediately.
 
 ## How to add new features to this application
-This part and below would be an explanation on how the application front-end was developed and how you can dig deeper to customize more options like the layout, css, colors, and which fields to collect from the user.
-This application was build mainly using Node JS, and Stripe API. So let's take a look at the server.js file
+This part and below would be an explanation on how the application front-end was developed and how you can dig deeper to customize more options like the layout, css, colors, and which fields to collect from the user. This application was build mainly using Node JS, and Stripe API. So let's take a look at the server.js file
+
 
 ```
 const express = require('express');
@@ -131,14 +123,13 @@ app.listen(PORT, () => {
 As you can see from the code above we are using the following Javascript components:
 
 * <a href="https://www.npmjs.com/package/express">Express:</a> a light weight web server for node
-* <a href="https://www.npmjs.com/package/express-handlebars">Express-Handlebars:</a> This html templating library for <a href="http://handlebarsjs.com/">handlebars.js</a> syntax
-* <a href="https://www.npmjs.com/package/cosmicjs">CosmicJs:</a> to handle interaction with Cosmic JS API from the server
+* <a href="https://www.npmjs.com/package/express-handlebars">Express-Handlebars:</a> This html templating library for handlebars.js syntax
+* <a href="http://handlebarsjs.com/">CosmicJs:</a> to handle interaction with Cosmic JS API from the server
 * <a href="https://www.npmjs.com/package/stripe">Stripe:</a> to handle interaction with <a href="https://stripe.com/docs/payments">Stripe payment API</a>
 
 Inside the server.js there is basically two function to handle server routing:
 
 * app.get('/') to handle the get request when the user visits the application. Inside this function we simply call Cosmic JS to fetch all data from our bucket and inject it as a server response local variable. The second part is just rendering the home view which is just an HTML/Handlebars template page.
-
 * app.post('/pay') to handle the payment form posting. Inside this function there is simply one call to Stripe charges API to add one charge to the specified credit card.
 
 ## How to customize the layout and CSS for the application?
@@ -225,7 +216,7 @@ This is basically the main html template for every page in our application. It's
 ## Handling credit card payment with Stripe and Axios
 To accept credit card payments in our application we use three steps process.
 
-* first we use <a href="https://stripe.com/docs/stripe-js/elements/quickstart">Stripe card elements</a> to inject the credit card input element inside our html form.
+first we use <a href="https://stripe.com/docs/stripe-js/elements/quickstart">Stripe card elements</a> to inject the credit card input element inside our html form.
 
 ```
 // Create a Stripe client.
@@ -238,13 +229,13 @@ var card = elements.create('card', {
     hidePostalCode: true,
     style: style});
 
-// Add an instance of the card Element into the `card-element` <div>.
+// Add an instance of the card Element into the `card-element` <div>
 card.mount('#card-element');
 ```
 
-* Validate the credit card info by calling `stripe.createToken` when the user hit the submit payment button. This function will simply send the info to Strip API and get a valid token if success. Otherwise it will return an invalid token.
+* Validate the credit card info by calling stripe.createToken when the user hit the submit payment button. This function will simply send the info to Strip API and get a valid token if success. Otherwise it will return an invalid token.
 
-* Post the payment form form data to the server post method. This method will take data submitted from the client form and submit them again as a stripe charge by calling `stripe.charges.create`. Take a look:
+* Post the payment form form data to the server post method. This method will take data submitted from the client form and submit them again as a stripe charge by calling stripe.charges.create. Take a look:
 
 ```
 ...
@@ -274,7 +265,6 @@ As you can see, once the charge is sent to stripe, we will return success to the
 ## How to add multiple page funnel to my application.
 Sometimes the application will need more than one page to capture the user final action. If you want to do that, you can simply add more pages to the server view, more routes, and handle the post from one page to the other either via javascript functions or server post methods.
 
-
 ## What about the main.js file?
 This file contains one function right now to handle count down counter. However you can use it if you any other javascript interactions with your user. For the count down counter we store a variable on Cosmic JS server called
 
@@ -282,17 +272,62 @@ This file contains one function right now to handle count down counter. However 
 const dealCountDown = {{ cosmic.metadata.deal_countdown }};
 
 ```
+
 and then we calls the `initializeClock` function which will run the count down until this variable reaches zero.
 
 Take a look at the main.js file for the full implementation details.
 
 <img src="../public/images/crowd-pitch-preview.gif" alt="Crowd-Pitch main view" style="display: block; margin-left: auto; margin-right: auto;">
 
+## Check user engagement with A/B testing
+As most marketers have come to realize, the cost of acquiring any quality traffic can be huge. A/B testing lets you make the most out of your existing traffic and helps you increase conversion without having to spend on acquiring new traffic. A/B testing can give you high ROI as sometimes, even the most minor changes can result in a significant increase in conversions.
+For the purpose of this app, I will add to `style.css` files and once the user visits the site I will be randomly selecting one stylesheet. The stylesheet selection will affect how the color theme will look like. So basically the user can see either version A of the site or version B.
+
+```
+# server.js
+app.get('/', async function(req, res) {
+    ...
+    const pageVeriant = Math.floor(Math.random() * 2);
+    res.locals.pageB = (pageVeriant === 1 ? true : false);
+    res.render('home');
+});
+```
+
+Then we load either style A or B on the `main.handlebars` file like this:
+
+```
+...
+    {{#if pageB }}
+    <link rel="stylesheet" href="css/styleB.css">
+    {{else }}
+    <link rel="stylesheet" href="css/style.css">
+    {{/if}}
+...
+
+```
+
+We also have a javascript variable that will be used during the payment process to capture which page the user is coming from. This info will be stored along Stripe charge information.
+
+```
+    const pageSource = {{#if pageB}} 'pageB' {{else}} 'pageA' {{/if}};
+```
+
+then we save the page source along the stripe charge on the server post method.
+
+```
+stripe.charges.create({
+    amount: Number(req.body.amount) * 100, // amount in cents
+    currency: 'usd',
+    description: `${req.body.firstName} ${req.body.lastName} (${req.body.email}) - ${req.body.orderSummary} - Source: ${req.body.pageSource}`,
+    source: req.body.stripeToken,
+    statement_descriptor: 'CROWD-PITHC GOOG CASHM'
+})
+
+```
+
 ## Conclusion
-In this application, I tried to show you how you can build a page that displays product info, and handle credit card payment by leveraging the power of Cosmic JS CMS capabilities and few other libraries that handle the payment function. Obviously you can add a function that will send an email to the user after the payment is submitted. Or add a function to send a user to another secure page to all him to download the digital product. Cosmic JS community apps has a lot of examples on how to handle integration with email functions, download functions, and third party platforms.
+In this application, I've demonstrated how you can build a page that displays product info and handles credit card payments by leveraging the power of the Cosmic JS CMS plus a few other libraries that handle the payment function. You can add a function that will send an email to the user after the payment is submitted. Or add a function to send a user to another secure page to all him to download the digital product. The Cosmic JS Community  has a lot of examples on how to handle integration with email functions, download functions, and third party platforms.
 
 As always, I really hope that you enjoyed this little app, and please do not hesitate to send me your thoughts or comments about what could I have done better.
 
-
-
-
+If you have any comments or questions about building apps with Cosmic JS, <a href="https://twitter.com/cosmic_js">reach out to us on Twitter</a> and <a href="https://cosmicjs.com/community">join the conversation on Slack</a>.
