@@ -1,29 +1,26 @@
-* Single page sales funnel using Node, Cosmic JS CMS, and Stripe.
+# Node.js Sales Page
+Single page sales funnel using Node, Cosmic JS CMS, and Stripe.
 
 <img src="./public/images/smartmockups_large.jpg" alt="Single page sales funnel">
 
 ## TL;DR
 
-* <a href="https://crowd-pitch.cosmicapp1.co/" target="_blank">Demo</a>
+* <a href="https://cosmicjs.com/apps/single-page-sales-funnel" target="_blank">Demo</a>
 * <a href="https://www.cosmicjs.com" target="_blank">Cosmic JS</a>
 * <a href="https://www.stripe.com/" target="_blank">Stripe</a>
 
 ## Getting started
 
-change Cosmic JS API key from .env.local
+Change Cosmic JS API key from .env.local
 
+```
+git clone https://github.com/cosmicjs/nodejs-sales-page
+cd nodejs-sales-page
+yarn
+```
+You can also start connected to your Bucket using an environment variable
 ```
 COSMIC_BUCKET=your-bucket-slug yarn start
-
-```
-
-```
-git clone https://github.com/cosmicjs/crowd-pitch
-cd crowd-pitch
-nmp install
-# start the app
-npm run server
-
 ```
 
 open <a href="http://localhost:3000">http://localhost:3000</a>
