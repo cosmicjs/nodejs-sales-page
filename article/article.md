@@ -71,11 +71,14 @@ This part and below would be an explanation on how the application front-end was
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 var Cosmic = require('cosmicjs');
 
+require('dotenv').config();
 const PORT = process.env.PORT || 3000
 var app = express();
-const stripeKey = process.env.STRIPE_KEY || 'sk_test_KnzjNDXECWprpt8ZvkOxs8Qz00tJfDiWYf';
+const stripeKey = process.env.STRIPE_KEY;
+const stripePublishKey = process.env.STRIPE_PUBLISH_KEY;
 const stripe = require('stripe')(stripeKey);
 const bucket_slug = process.env.COSMIC_BUCKET || 'crowd-pitch';
 
@@ -85,16 +88,28 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({
+    secret: 'crowd pitch keep secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}))
 const api = Cosmic();
 const bucket = api.bucket({
     slug: bucket_slug
 });
 
 app.get('/', async function(req, res) {
+    // const pageVeriant = Math.floor(Math.random() * 2);
+    res.locals.stripePublishKey = stripePublishKey;
     const data = (await bucket.getObjects({type: 'pages'})).objects;
     res.locals.cosmic = data.find((item) => {
         return item.slug === 'google-cash';
     });
+    if (!req.session.pageVariant) {
+        req.session.pageVariant = Math.floor(Math.random() * 2);
+    }
+    res.locals.pageB = (req.session.pageVariant === 1 ? true : false);
     res.render('home');
 });
 
@@ -102,7 +117,7 @@ app.post('/pay', function(req, res) {
     stripe.charges.create({
         amount: Number(req.body.amount) * 100, // amount in cents
         currency: 'usd',
-        description: `${req.body.firstName} ${req.body.lastName} (${req.body.email}) - ${req.body.orderSummary}`,
+        description: `${req.body.firstName} ${req.body.lastName} (${req.body.email}) - ${req.body.orderSummary} - Source: ${req.body.pageSource}`,
         source: req.body.stripeToken,
         statement_descriptor: 'CROWD-PITHC GOOG CASHM'
     })
@@ -179,7 +194,11 @@ For the application layout there the file `/views/layouts/main.handlebars`
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Lato|Montserrat|Oswald|Roboto" rel="stylesheet">
+    {{#if pageB }}
+    <link rel="stylesheet" href="css/styleB.css">
+    {{else }}
     <link rel="stylesheet" href="css/style.css">
+    {{/if}}
 </head>
 <body>
 
@@ -195,7 +214,7 @@ For the application layout there the file `/views/layouts/main.handlebars`
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script type="text/javascript">
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_izLBOGP9AifiSKEUMR1mEwCc00a6YtHFf1');
+        var stripe = Stripe('{{ stripePublishKey }}');
         // Create an instance of Elements.
         var elements = stripe.elements();
     </script>
@@ -329,10 +348,3 @@ In this application, I've demonstrated how you can build a page that displays pr
 As always, I really hope that you enjoyed this little app, and please do not hesitate to send me your thoughts or comments about what could I have done better.
 
 If you have any comments or questions about building apps with Cosmic JS, <a href="https://twitter.com/cosmic_js">reach out to us on Twitter</a> and <a href="https://cosmicjs.com/community">join the conversation on Slack</a>.
-
-
-- Cosmic JS Articles
-- Dev.to
-- Codementor
-- Hashnode
-- Medium (Hackernoon)

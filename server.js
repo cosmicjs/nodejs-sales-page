@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 var Cosmic = require('cosmicjs');
 
-
 require('dotenv').config();
 const PORT = process.env.PORT || 3000
 var app = express();
