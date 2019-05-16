@@ -1,11 +1,15 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 var Cosmic = require('cosmicjs');
 
+
+require('dotenv').config();
 const PORT = process.env.PORT || 3000
 var app = express();
-const stripeKey = process.env.STRIPE_KEY || 'sk_test_KnzjNDXECWprpt8ZvkOxs8Qz00tJfDiWYf';
+const stripeKey = process.env.STRIPE_KEY;
+const stripePublishKey = process.env.STRIPE_PUBLISH_KEY;
 const stripe = require('stripe')(stripeKey);
 const bucket_slug = process.env.COSMIC_BUCKET || 'crowd-pitch';
 
@@ -15,19 +19,28 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({
+    secret: 'crowd pitch keep secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}))
 const api = Cosmic();
 const bucket = api.bucket({
     slug: bucket_slug
 });
 
 app.get('/', async function(req, res) {
-    res.locals.stripeKey = stripeKey;
-    const pageVeriant = Math.floor(Math.random() * 2);
+    // const pageVeriant = Math.floor(Math.random() * 2);
+    res.locals.stripePublishKey = stripePublishKey;
     const data = (await bucket.getObjects({type: 'pages'})).objects;
     res.locals.cosmic = data.find((item) => {
         return item.slug === 'google-cash';
     });
-    res.locals.pageB = (pageVeriant === 1 ? true : false);
+    if (!req.session.pageVariant) {
+        req.session.pageVariant = Math.floor(Math.random() * 2);
+    }
+    res.locals.pageB = (req.session.pageVariant === 1 ? true : false);
     res.render('home');
 });
 

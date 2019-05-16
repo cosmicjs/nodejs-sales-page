@@ -42,3 +42,8 @@ function initializeClock(id, endtime) {
 // call the countdown function
 var deadline = new Date(Date.parse(new Date()) + Number(dealCountDown) * 1000);
 initializeClock('clockdiv', deadline);
+var clientPageSource;
+// set the local storage variables
+if (!localStorage.getItem('pageSource')) {
+    localStorage.setItem('pageSource', pageSource);
+}

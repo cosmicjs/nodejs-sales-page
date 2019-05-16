@@ -329,3 +329,10 @@ In this application, I've demonstrated how you can build a page that displays pr
 As always, I really hope that you enjoyed this little app, and please do not hesitate to send me your thoughts or comments about what could I have done better.
 
 If you have any comments or questions about building apps with Cosmic JS, <a href="https://twitter.com/cosmic_js">reach out to us on Twitter</a> and <a href="https://cosmicjs.com/community">join the conversation on Slack</a>.
+
+
+- Cosmic JS Articles
+- Dev.to
+- Codementor
+- Hashnode
+- Medium (Hackernoon)
