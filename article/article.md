@@ -100,13 +100,12 @@ const bucket = api.bucket({
 });
 
 app.get('/', async function(req, res) {
-    // const pageVeriant = Math.floor(Math.random() * 2);
     res.locals.stripePublishKey = stripePublishKey;
     const data = (await bucket.getObjects({type: 'pages'})).objects;
     res.locals.cosmic = data.find((item) => {
         return item.slug === 'google-cash';
     });
-    if (!req.session.pageVariant) {
+    if (req.session.pageVariant === undefined) {
         req.session.pageVariant = Math.floor(Math.random() * 2);
     }
     res.locals.pageB = (req.session.pageVariant === 1 ? true : false);
